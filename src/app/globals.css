@@ -1,26 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@theme inline {
-	--color-primary: var(--primary);
-	--color-secondery: var(--secondery);
-	--color-white: var(--white);
-	--color-dark: var(--dark);
-	--color-success: var(--success);
-	--color-error: var(--error);
-	--color-yellow: var(--yellow);
-}
-
-:root {
-	--primary: #7800d2;
-	--secondery: #e6007d;
-	--white: #f6f7fc;
-	--dark: #000000;
-	--success: #2dcc1b;
-	--error: #f04438;
-	--yellow: #cca829;
-}
-
 @font-face {
 	font-family: "FCIconic";
 	src: url("/fonts/FCIconic-Light.woff2") format("woff2");
@@ -45,7 +25,29 @@
 	font-display: swap;
 }
 
+@theme inline {
+	--color-primary: var(--primary);
+	--color-secondery: var(--secondery);
+	--color-white: var(--white);
+	--color-dark: var(--dark);
+	--color-success: var(--success);
+	--color-error: var(--error);
+	--color-yellow: var(--yellow);
+	--font-fciconic: "FcIconic", sans-serif;
+	--font-fciconicBW: "FCIconic-Wide", sans-serif;
+}
+
+:root {
+	--primary: #7800d2;
+	--secondery: #e6007d;
+	--white: #f6f7fc;
+	--dark: #000000;
+	--success: #2dcc1b;
+	--error: #f04438;
+	--yellow: #cca829;
+}
+
 body {
 	font-family: "FCIconic";
-	@apply bg-white;
+	height: 100dvh;
 }
