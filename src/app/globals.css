@@ -33,6 +33,7 @@
 	--color-success: var(--success);
 	--color-error: var(--error);
 	--color-yellow: var(--yellow);
+	--color-textGray: var(--text);
 	--font-fciconic: "FcIconic", sans-serif;
 	--font-fciconicBW: "FCIconic-Wide", sans-serif;
 }
@@ -45,9 +46,40 @@
 	--success: #2dcc1b;
 	--error: #f04438;
 	--yellow: #cca829;
+	--text: #5d6598;
 }
 
 body {
 	font-family: "FCIconic";
 	height: 100dvh;
+}
+
+a {
+	font-family: "FCIconic-Wide";
+}
+
+p {
+	font-size: 1rem;
+	line-height: 150%;
+	color: #5d6598;
+}
+
+@layer utilities {
+	.glassmorphism {
+		@apply bg-[#ffffff]/20 border border-[#fff] w-full;
+	}
+	.cta-btn {
+		background: linear-gradient(to right, var(--secondery), var(--primary));
+		background-size: 200%;
+		background-position-x: center;
+		color: white;
+		padding: 8px 20px;
+		border-radius: 100px;
+		filter: drop-shadow(1px 1px 4px rgba(122, 0, 209, 0.4));
+		transition: background-position 500ms;
+
+		&:hover {
+			background-position: right;
+		}
+	}
 }

@@ -1,4 +1,5 @@
 import BackgroundLayers from "./components/BackgroundLayers";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import "./globals.css";
 
@@ -10,10 +11,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className=" mx-auto relative bg-white">
-				<BackgroundLayers />
-				<Navbar />
-				{children}
+			<body className="relative bg-white">
+				<BackgroundLayers position="top" />
+				<div className="h-full mx-auto flex items-center flex-col py-4 gap-16 max-w-[1440px] lg:px-16 px-4">
+					<Navbar />
+					{children}
+					<Footer />
+				</div>
 			</body>
 		</html>
 	);
