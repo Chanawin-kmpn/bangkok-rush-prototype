@@ -8,18 +8,22 @@ import React, { useRef, useState } from "react";
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const dropdownRef = useRef(null); // ✅ เพิ่ม ref สำหรับ dropdown
+	const [isVisible, setIsVisible] = useState(false); // ✅ เพิ่ม state สำหรับควบคุมการแสดงผล
+	const dropdownRef = useRef(null);
+	const tl = useRef(null); // ✅ เก็บ timeline ไว้ใช้ซ้ำ
 
-	// ✅ Animation สำหรับเปิด dropdown
 	useGSAP(() => {
-		if (isOpen && dropdownRef.current) {
+		if (dropdownRef.current) {
+			tl.current = gsap.timeline({ paused: true });
+
 			gsap.set(dropdownRef.current, {
 				y: -20,
 				opacity: 0,
 				scale: 0.95,
 			});
 
-			gsap.to(dropdownRef.current, {
+			// Animation timeline
+			tl.current.to(dropdownRef.current, {
 				y: 0,
 				opacity: 1,
 				scale: 1,
@@ -27,27 +31,30 @@ const Navbar = () => {
 				ease: "back.out(1.7)",
 			});
 		}
-	}, [isOpen]);
+	}, [isVisible]); // ✅ dependency เปลี่ยนเป็น isVisible
 
 	const handleOpen = () => {
-		setIsOpen((prev) => !prev);
+		if (!isOpen) {
+			// เปิด menu
+			setIsVisible(true);
+			setIsOpen(true);
+			setTimeout(() => {
+				if (tl.current) tl.current.play();
+			}, 10); // รอให้ DOM update
+		} else {
+			// ปิด menu
+			handleClose();
+		}
 	};
 
-	// ✅ Function สำหรับปิด dropdown พร้อม animation
 	const handleClose = () => {
-		if (dropdownRef.current) {
-			gsap.to(dropdownRef.current, {
-				y: -10,
-				opacity: 0,
-				scale: 0.95,
-				duration: 0.2,
-				ease: "power2.in",
-				onComplete: () => {
-					setIsOpen(false);
-				},
+		if (tl.current) {
+			tl.current.reverse();
+			// ✅ รอให้ animation เสร็จก่อนเปลี่ยน state
+			tl.current.eventCallback("onReverseComplete", () => {
+				setIsOpen(false);
+				setIsVisible(false);
 			});
-		} else {
-			setIsOpen(false);
 		}
 	};
 
@@ -66,10 +73,15 @@ const Navbar = () => {
 					</Link>
 					<div>
 						<div
-							className="lg:hidden  p-[10px] cursor-pointer hover:bg-white/20 rounded-lg transition-colors"
+							className="lg:hidden p-[10px] cursor-pointer hover:bg-white/20 rounded-lg transition-colors"
 							onClick={handleOpen}
 						>
-							<Menu />
+							<Menu
+								className={`transition-transform duration-200 ${
+									isOpen ? "rotate-90" : "rotate-0"
+								}`}
+								color="#5D6598"
+							/>
 						</div>
 						<div className="space-x-8 hidden lg:block">
 							<Link
@@ -90,10 +102,10 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
-				{isOpen && (
+				{isVisible && (
 					<div
-						ref={dropdownRef} // ✅ เพิ่ม ref
-						className="bg-[#ffffff]/50 border rounded-[25px] border-[#fff] absolute top-full left-0 right-0 mt-4 backdrop-blur-sm p-4 shadow-lg lg:hidden"
+						ref={dropdownRef}
+						className="glassmorphism rounded-[25px] absolute top-full left-0 right-0 mt-4 backdrop-blur-sm p-4 shadow-lg lg:hidden"
 					>
 						<div className="flex flex-col space-y-4">
 							<Link

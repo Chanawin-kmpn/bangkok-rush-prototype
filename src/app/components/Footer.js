@@ -12,9 +12,9 @@ const Footer = () => {
 	const backgroundRefs = useRef([]);
 
 	const links = [
-		{ href: "/my-club", text: "My Club" },
-		{ href: "/explore", text: "Explore Club" },
-		{ href: "/create", text: "Create Club" },
+		{ href: "/", text: "My Club" },
+		{ href: "/", text: "Explore Club" },
+		{ href: "/", text: "Create Club" },
 	];
 
 	useGSAP(() => {
