@@ -17,7 +17,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Mall",
 				area: "1.5 km²",
-				radius: "750 m",
+				radius: "750",
 				clubs: 25,
 				status: "Available",
 			},
@@ -36,7 +36,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Landmark",
 				area: "2.0 km²",
-				radius: "900 m",
+				radius: "900",
 				clubs: 20,
 				status: "Closed",
 			},
@@ -54,7 +54,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Park",
 				area: "1.13 km²",
-				radius: "850 m",
+				radius: "850",
 				clubs: 18,
 				status: "Available",
 			},
@@ -72,7 +72,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Temple",
 				area: "0.8 km²",
-				radius: "650 m",
+				radius: "650",
 				clubs: 16,
 				status: "Available",
 			},
@@ -90,7 +90,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Temple",
 				area: "0.6 km²",
-				radius: "550 m",
+				radius: "550",
 				clubs: 14,
 				status: "Available",
 			},
@@ -108,7 +108,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Landmark",
 				area: "1.3 km²",
-				radius: "700 m",
+				radius: "700",
 				clubs: 18,
 				status: "Available",
 			},
@@ -126,7 +126,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Landmark",
 				area: "1.0 km²",
-				radius: "600 m",
+				radius: "600",
 				clubs: 21,
 				status: "Closed",
 			},
@@ -144,7 +144,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Mall",
 				area: "2.2 km²",
-				radius: "950 m",
+				radius: "950",
 				clubs: 20,
 				status: "Available",
 			},
@@ -162,7 +162,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Mall",
 				area: "1.6 km²",
-				radius: "800 m",
+				radius: "800",
 				clubs: 15,
 				status: "Available",
 			},
@@ -180,7 +180,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Stadium",
 				area: "2.0 km²",
-				radius: "1100 m",
+				radius: "110m",
 				clubs: 21,
 				status: "Available",
 			},
@@ -198,7 +198,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Park",
 				area: "1.4 km²",
-				radius: "750 m",
+				radius: "750",
 				clubs: 14,
 				status: "Available",
 			},
@@ -216,7 +216,7 @@ export const sunriseSquadClub = {
 			overview: {
 				type: "Mall",
 				area: "0.9 km²",
-				radius: "600 m",
+				radius: "600",
 				clubs: 12,
 				status: "Available",
 			},

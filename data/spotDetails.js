@@ -9,8 +9,7 @@ export const siamSquareDetail = {
 	overview: {
 		type: "Mall",
 		area: "1.5 km²",
-		radius: "750 m",
-		clubs: 25,
+		radius: 750,
 		status: "Available",
 	},
 	// ✅ เพิ่ม Quarterly Rankings
@@ -209,8 +208,7 @@ export const grandPalaceDetail = {
 	overview: {
 		type: "Landmark",
 		area: "2.0 km²",
-		radius: "900 m",
-		clubs: 20,
+		radius: 900,
 		status: "Closed",
 	},
 	quarterlyRankings: {
@@ -408,8 +406,7 @@ export const lumphiniParkDetail = {
 	overview: {
 		type: "Park",
 		area: "1.13 km²",
-		radius: "850 m",
-		clubs: 18,
+		radius: 850,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -689,8 +686,7 @@ export const watPhoTempleDetail = {
 	overview: {
 		type: "Temple",
 		area: "0.8 km²",
-		radius: "650 m",
-		clubs: 16,
+		radius: 650,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -888,8 +884,7 @@ export const watArunTempleDetail = {
 	overview: {
 		type: "Temple",
 		area: "0.6 km²",
-		radius: "550 m",
-		clubs: 14,
+		radius: 550,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1087,8 +1082,7 @@ export const baiyokeTowerDetail = {
 	overview: {
 		type: "Landmark",
 		area: "1.3 km²",
-		radius: "700 m",
-		clubs: 18,
+		radius: 700,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1286,8 +1280,7 @@ export const democracyMonumentDetail = {
 	overview: {
 		type: "Landmark",
 		area: "1.0 km²",
-		radius: "600 m",
-		clubs: 21,
+		radius: 600,
 		status: "Closed",
 	},
 	quarterlyRankings: {
@@ -1493,8 +1486,7 @@ export const iconsiamDetail = {
 	overview: {
 		type: "Mall",
 		area: "2.2 km²",
-		radius: "950 m",
-		clubs: 20,
+		radius: 950,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1700,8 +1692,7 @@ export const asiatiqueRiverfrontDetail = {
 	overview: {
 		type: "Mall",
 		area: "1.6 km²",
-		radius: "800 m",
-		clubs: 15,
+		radius: 800,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1939,8 +1930,7 @@ export const rajamangalaStadiumDetail = {
 	overview: {
 		type: "Stadium",
 		area: "2.0 km²",
-		radius: "1100 m",
-		clubs: 21,
+		radius: 110,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2202,8 +2192,7 @@ export const benjakittiParkDetail = {
 	overview: {
 		type: "Park",
 		area: "1.4 km²",
-		radius: "750 m",
-		clubs: 14,
+		radius: 750,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2433,8 +2422,7 @@ export const centralWorldPlazaDetail = {
 	overview: {
 		type: "Mall",
 		area: "0.9 km²",
-		radius: "600 m",
-		clubs: 12,
+		radius: 600,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2664,8 +2652,7 @@ export const chatuchakMarketDetail = {
 	overview: {
 		type: "Market",
 		area: "1.1 km²",
-		radius: "680 m",
-		clubs: 16,
+		radius: 680,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2895,8 +2882,7 @@ export const jimThompsonHouseDetail = {
 	overview: {
 		type: "Museum",
 		area: "0.4 km²",
-		radius: "350 m",
-		clubs: 11,
+		radius: 350,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -3126,8 +3112,7 @@ export const mbkCenterDetail = {
 	overview: {
 		type: "Mall",
 		area: "0.7 km²",
-		radius: "450 m",
-		clubs: 19,
+		radius: 450,
 		status: "Available",
 	},
 	quarterlyRankings: {
