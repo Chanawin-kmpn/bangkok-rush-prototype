@@ -106,7 +106,7 @@ const Map = () => {
 	console.log(radiusColor.mall.fillColor);
 
 	return (
-		<div className="w-full h-dvh relative">
+		<div className="w-full h-dvh relative  rounded-[40px] overflow-hidden">
 			<MapContainer
 				center={bangkokCenter}
 				zoom={12}

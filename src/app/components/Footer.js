@@ -107,6 +107,20 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
+			<div className="flex flex-col justify-between items-center gap-4 px-4 py-6 lg:flex-row lg:p-10">
+				<div>
+					<p className="font-fciconicBW text-textGray text-xs lg:text-base">
+						Copyright © 2025 Bangkok Rush. All rights reserved.
+					</p>
+				</div>
+				<div className="space-x-2 [&_a]:text-xs lg:[&_a]:text-base text-textGray">
+					<Link href="/">Privacy Policy</Link>
+					<span>|</span>
+					<Link href="/">Term of Conditions</Link>
+					<span>|</span>
+					<Link href="/">Cookies Policy</Link>
+				</div>
+			</div>
 		</footer>
 	);
 };
