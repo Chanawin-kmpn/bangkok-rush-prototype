@@ -13,31 +13,16 @@ import { allSpotsDetailComplete } from "../../../data/spotDetails";
 import { radiusColor } from "../../../constants";
 import { getRadiusColor } from "../../../helpers/helpers";
 
-// Club colors mapping
-const clubColors = {
-	"Sunrise Squad": "#FF6B35",
-	"Green Warriors": "#4CAF50",
-	"Urban Runners United": "#2196F3",
-	"Morning Glory": "#FF9800",
-	"Lotus Rising": "#9C27B0",
-	"Ayutthaya Spirit": "#795548",
-	"Siam Sprint": "#F44336",
-	"Pathum Fitness": "#607D8B",
-	"Marathon Club": "#FF5722",
-	"Phuket Beach Run": "#00BCD4",
-};
-
 // สร้าง custom marker สำหรับ club ที่นำ
-const createClubMarker = (clubName, isLeading = false) => {
-	const color = clubColors[clubName] || "#666666";
+const createClubMarker = (clubLogo, isLeading = false) => {
 	const size = isLeading ? 36 : 28;
 
 	return new L.DivIcon({
 		html: `
 			<div style="
+                position: relative;
 				width: ${size}px; 
 				height: ${size}px; 
-				background: ${color};
 				border-radius: 6px;
 				border: 3px solid white;
 				box-shadow: 0 3px 6px rgba(0,0,0,0.3);
@@ -47,8 +32,9 @@ const createClubMarker = (clubName, isLeading = false) => {
 				font-weight: bold;
 				color: white;
 				font-size: ${isLeading ? "16px" : "14px"};
+                overflow: hidden;
 			">
-				🏃‍♂️
+				<img src=${clubLogo} className="size-4 object-cover"/>
 			</div>
 		`,
 		className: "custom-club-marker",
@@ -86,7 +72,7 @@ const createUndiscoveredMarker = () => {
 
 const Map = () => {
 	const bangkokCenter = [13.7563, 100.5018];
-	const currentQuarter = "Oct - Dec"; // ตุลาคม
+	const currentQuarter = "Jul - Sep"; // ตุลาคม
 
 	// ประมวลผลข้อมูล spots
 	const processSpotData = () => {
@@ -113,6 +99,7 @@ const Map = () => {
 				isSunriseLeading,
 				winner: winner?.clubName,
 				winnerPoints: winner?.points,
+				winnerLogo: winner?.clubLogo,
 				sunriseRank: sunriseSquadRank?.position,
 				sunrisePoints: sunriseSquadRank?.points,
 				totalClubs: rankings?.length || 0,
@@ -167,7 +154,7 @@ const Map = () => {
 							position={[spot.coordinates.lat, spot.coordinates.lng]}
 							icon={
 								spot.isDiscovered
-									? createClubMarker(spot.winner, spot.isSunriseLeading)
+									? createClubMarker(spot.winnerLogo, spot.isSunriseLeading)
 									: createUndiscoveredMarker()
 							}
 						>
