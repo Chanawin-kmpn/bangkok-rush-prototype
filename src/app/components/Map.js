@@ -11,62 +11,43 @@ import {
 import L from "leaflet";
 import { allSpotsDetailComplete } from "../../../data/spotDetails";
 import { radiusColor } from "../../../constants";
-import { getRadiusColor } from "../../../helpers/helpers";
+import { calculateMarkerSize, getRadiusColor } from "../../../helpers/helpers";
+import Image from "next/image";
+import { MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
+import ScoreBar from "./ScoreBar";
+import GradientLinkBtn from "./GradientLinkBtn";
 
 // สร้าง custom marker สำหรับ club ที่นำ
-const createClubMarker = (clubLogo, isLeading = false) => {
-	const size = isLeading ? 36 : 28;
+const createClubMarker = (clubLogo, radius, isLeading = false) => {
+	const size = calculateMarkerSize(radius, isLeading);
+	const imageSize = Math.floor(size * 3);
 
 	return new L.DivIcon({
 		html: `
-			<div style="
-                position: relative;
-				width: ${size}px; 
-				height: ${size}px; 
-				border-radius: 6px;
-				border: 3px solid white;
-				box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-weight: bold;
-				color: white;
-				font-size: ${isLeading ? "16px" : "14px"};
-                overflow: hidden;
-			">
-				<img src=${clubLogo} className="size-4 object-cover"/>
+			<div style="width= 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+				<img src="${clubLogo}" style="width: ${imageSize}px; height: ${imageSize}px; object-fit: cover; border-radius: 2px;" />
+				
 			</div>
 		`,
 		className: "custom-club-marker",
 		iconSize: [size, size],
-		iconAnchor: [size / 2, size / 2],
+		iconAnchor: [size / 2, size],
 	});
 };
 
 // สร้าง marker สำหรับ undiscovered spot
-const createUndiscoveredMarker = () => {
+const createUndiscoveredMarker = ({ radius }) => {
+	const size = calculateMarkerSize(radius);
 	return new L.DivIcon({
 		html: `
-			<div style="
-				width: 32px; 
-				height: 32px; 
-				background: #E0E0E0;
-				border-radius: 50%;
-				border: 3px solid #BDBDBD;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-weight: bold;
-				color: #757575;
-				font-size: 18px;
-				box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-			">
+			<div style="width= 100%; height: 100%; display: flex; justify-content: center; align-items: center; font-size: 18px">
 				?
 			</div>
 		`,
 		className: "undiscovered-marker",
-		iconSize: [32, 32],
-		iconAnchor: [16, 16],
+		iconSize: [size, size],
+		iconAnchor: [size / 2, size / 2],
 	});
 };
 
@@ -80,6 +61,17 @@ const Map = () => {
 			const rankings = spot.quarterlyRankings[currentQuarter];
 			const winner = rankings?.[0]; // อันดับ 1
 
+			const topThree =
+				rankings?.slice(0, 3).map((club) => ({
+					position: club.position,
+					clubName: club.clubName,
+					clubLogo: club.clubLogo,
+					points: club.points,
+					crown: club.crown,
+					leader: club.leader,
+					members: club.members,
+				})) || [];
+
 			// เช็คว่า Sunrise Squad อยู่ใน rankings หรือไม่
 			const sunriseSquadRank = rankings?.find(
 				(club) => club.clubName === "Sunrise Squad"
@@ -90,18 +82,20 @@ const Map = () => {
 			return {
 				id: spot.id,
 				name: spot.name,
+				image: spot.img,
 				coordinates: spot.coordinates,
 				district: spot.district,
 				type: spot.overview.type,
 				clubs: spot.overview.clubs,
 				radius: spot.overview.radius,
+				status: spot.overview.status,
 				isDiscovered,
 				isSunriseLeading,
+				topThree: topThree,
 				winner: winner?.clubName,
 				winnerPoints: winner?.points,
 				winnerLogo: winner?.clubLogo,
-				sunriseRank: sunriseSquadRank?.position,
-				sunrisePoints: sunriseSquadRank?.points,
+				sunriseRank: sunriseSquadRank,
 				totalClubs: rankings?.length || 0,
 				rankings: rankings || [],
 			};
@@ -154,77 +148,104 @@ const Map = () => {
 							position={[spot.coordinates.lat, spot.coordinates.lng]}
 							icon={
 								spot.isDiscovered
-									? createClubMarker(spot.winnerLogo, spot.isSunriseLeading)
-									: createUndiscoveredMarker()
+									? createClubMarker(
+											spot.winnerLogo,
+											spot.radius,
+											spot.isSunriseLeading
+									  )
+									: createUndiscoveredMarker(spot.radius)
 							}
 						>
 							<Popup>
-								<div className="min-w-[220px] p-2">
-									<h3 className="text-lg font-bold mb-2 text-gray-800">
-										{spot.name}
-									</h3>
-									<div className="text-sm text-gray-600 mb-3">
-										📍 {spot.district} • {spot.type} • {spot.totalClubs} clubs
+								<div className="min-w-[400px] flex flex-col">
+									<div className="relative w-full h-[270px] rounded-t-[12px] overflow-hidden">
+										<Image
+											src={spot.image}
+											fill
+											alt="spot-image"
+											className="object-cover"
+										/>
 									</div>
-
-									{spot.isDiscovered ? (
-										<div className="space-y-2">
-											<div className="bg-yellow-50 p-2 rounded">
-												<div className="font-semibold text-yellow-800">
-													🏆 Current Leader
+									<div className="flex flex-col p-4 gap-4">
+										<div className="flex items-center justify-between">
+											<div className="flex flex-col gap-2">
+												<div className="flex items-center gap-2">
+													<h3 className="text-lg">{spot.name}</h3>
+													<span
+														className={cn("font-fciconicBW ", {
+															"text-success": spot.status === "Available",
+															"text-error": spot.status === "Closed",
+														})}
+													>
+														{spot.status}
+													</span>
 												</div>
-												<div className="text-sm">
-													{spot.winner} • {spot.winnerPoints?.toLocaleString()}{" "}
-													pts
+												<div className="flex gap-1 text-textGray">
+													<MapPin size={16} />
+													<span>
+														{spot.district} • {spot.type}
+													</span>
 												</div>
-											</div>
-
-											<div className="bg-orange-50 p-2 rounded">
-												<div className="font-semibold text-orange-800">
-													🟡 Sunrise Squad
-												</div>
-												<div className="text-sm">
-													Rank #{spot.sunriseRank} •{" "}
-													{spot.sunrisePoints?.toLocaleString()} pts
-												</div>
-											</div>
-
-											{spot.isSunriseLeading && (
-												<div className="bg-green-100 p-2 rounded text-green-800 text-sm font-semibold">
-													🎯 DOMINATED BY SUNRISE SQUAD!
-												</div>
-											)}
-
-											<div className="text-xs text-gray-500 pt-2 border-t">
-												{spot.totalClubs} clubs competing • Oct-Dec 2024
 											</div>
 										</div>
-									) : (
-										<div className="space-y-2">
-											<div className="bg-gray-100 p-3 rounded text-center">
-												<div className="text-2xl mb-1">🔍</div>
-												<div className="font-semibold text-gray-700 mb-1">
-													Undiscovered Spot
+										{spot.isDiscovered ? (
+											<div className="space-y-4">
+												<div className="space-y-2">
+													<h4 className="font-fciconicBW text-dark text-sm">
+														Top Club Rank
+													</h4>
+													<div className="flex flex-col gap-2">
+														{spot.topThree.map(
+															({
+																clubName,
+																clubLogo,
+																position,
+																points,
+																members,
+																leader,
+															}) => (
+																<ScoreBar
+																	clubName={clubName}
+																	clubLogo={clubLogo}
+																	position={position}
+																	leader={leader}
+																	members={members}
+																	points={points}
+																	key={clubName}
+																	isPopup
+																/>
+															)
+														)}
+													</div>
 												</div>
-												<div className="text-sm text-gray-600">
-													Sunrise Squad hasn&apos;t competed here yet
+												<div className="space-y-2">
+													<h4 className="font-fciconicBW text-dark text-sm">
+														Your Club Rank
+													</h4>
+													<div className="flex flex-col gap-2">
+														<ScoreBar
+															clubName={spot.sunriseRank.clubName}
+															clubLogo={spot.sunriseRank.clubLogo}
+															position={spot.sunriseRank.position}
+															leader={spot.sunriseRank.leader}
+															members={spot.sunriseRank.members}
+															points={spot.sunriseRank.points}
+															isPopup
+														/>
+													</div>
+												</div>
+												<div>
+													<GradientLinkBtn
+														label="View Details"
+														isGradient
+														link={`map/${spot.id}`}
+													/>
 												</div>
 											</div>
-
-											<div className="bg-blue-50 p-2 rounded">
-												<div className="font-semibold text-blue-800 text-sm">
-													Current Leader: {spot.winner}
-												</div>
-												<div className="text-xs text-blue-600">
-													{spot.winnerPoints?.toLocaleString()} points
-												</div>
-											</div>
-
-											<div className="text-xs text-gray-500 text-center">
-												Tap to explore this location!
-											</div>
-										</div>
-									)}
+										) : (
+											<div></div>
+										)}
+									</div>
 								</div>
 							</Popup>
 						</Marker>

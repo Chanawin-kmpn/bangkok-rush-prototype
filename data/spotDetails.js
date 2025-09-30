@@ -9,7 +9,7 @@ export const siamSquareDetail = {
 	overview: {
 		type: "Mall",
 		area: "1.5 km²",
-		radius: 750,
+		radius: 145,
 		status: "Available",
 	},
 	// ✅ เพิ่ม Quarterly Rankings
@@ -208,7 +208,7 @@ export const grandPalaceDetail = {
 	overview: {
 		type: "Landmark",
 		area: "2.0 km²",
-		radius: 900,
+		radius: 154,
 		status: "Closed",
 	},
 	quarterlyRankings: {
@@ -406,7 +406,7 @@ export const lumphiniParkDetail = {
 	overview: {
 		type: "Park",
 		area: "1.13 km²",
-		radius: 850,
+		radius: 500,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -686,7 +686,7 @@ export const watPhoTempleDetail = {
 	overview: {
 		type: "Temple",
 		area: "0.8 km²",
-		radius: 650,
+		radius: 150,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -884,7 +884,7 @@ export const watArunTempleDetail = {
 	overview: {
 		type: "Temple",
 		area: "0.6 km²",
-		radius: 550,
+		radius: 144,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1078,11 +1078,11 @@ export const baiyokeTowerDetail = {
 	img: "/images/spots/baiyoke-tower.png",
 	description:
 		"Bangkok's iconic skyscraper and once the tallest building in Southeast Asia. Running around this towering landmark provides an urban challenge with stunning city views and modern architecture.",
-	coordinates: { lat: 13.7534, lng: 100.5358 },
+	coordinates: { lat: 13.7542, lng: 100.5399 },
 	overview: {
 		type: "Landmark",
 		area: "1.3 km²",
-		radius: 700,
+		radius: 150,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1276,11 +1276,11 @@ export const democracyMonumentDetail = {
 	img: "/images/spots/democracy-monument.png",
 	description:
 		"A historic symbol of Thailand's democratic ideals located at the heart of old Bangkok. This monument represents both political significance and urban running challenges in the bustling Ratchadamnoen area.",
-	coordinates: { lat: 13.7563, lng: 100.5018 },
+	coordinates: { lat: 13.7567, lng: 100.501855 },
 	overview: {
 		type: "Landmark",
 		area: "1.0 km²",
-		radius: 600,
+		radius: 100,
 		status: "Closed",
 	},
 	quarterlyRankings: {
@@ -1486,7 +1486,7 @@ export const iconsiamDetail = {
 	overview: {
 		type: "Mall",
 		area: "2.2 km²",
-		radius: 950,
+		radius: 176,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1688,11 +1688,11 @@ export const asiatiqueRiverfrontDetail = {
 	img: "/images/spots/asiatique.png",
 	description:
 		"A charming riverside shopping and entertainment complex combining vintage charm with modern amenities. The waterfront promenade offers scenic running with river breezes and cultural attractions.",
-	coordinates: { lat: 13.7043, lng: 100.5063 },
+	coordinates: { lat: 13.70452, lng: 100.50262 },
 	overview: {
 		type: "Mall",
 		area: "1.6 km²",
-		radius: 800,
+		radius: 200,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -1926,11 +1926,11 @@ export const rajamangalaStadiumDetail = {
 	img: "/images/spots/rajamangala.png",
 	description:
 		"Thailand's national stadium and largest sporting venue. This world-class facility provides the perfect environment for serious athletic training with professional-grade tracks and facilities.",
-	coordinates: { lat: 13.7548, lng: 100.6102 },
+	coordinates: { lat: 13.75547, lng: 100.62216 },
 	overview: {
 		type: "Stadium",
 		area: "2.0 km²",
-		radius: 110,
+		radius: 150,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2188,11 +2188,11 @@ export const benjakittiParkDetail = {
 	img: "/images/spots/benjakitti-park.png",
 	description:
 		"A modern urban park featuring innovative skywalk bridges through forest canopy. This contemporary green space offers unique elevated running experiences with stunning city skyline views.",
-	coordinates: { lat: 13.7314, lng: 100.5559 },
+	coordinates: { lat: 13.72965, lng: 100.5558 },
 	overview: {
 		type: "Park",
 		area: "1.4 km²",
-		radius: 750,
+		radius: 500,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2418,11 +2418,11 @@ export const centralWorldPlazaDetail = {
 	img: "/images/spots/central-world.png",
 	description:
 		"One of Bangkok's largest shopping complexes located in the heart of the city. This bustling commercial hub offers challenging urban running through Thailand's premier shopping and entertainment district.",
-	coordinates: { lat: 13.7472, lng: 100.5398 },
+	coordinates: { lat: 13.746335, lng: 100.53937 },
 	overview: {
 		type: "Mall",
 		area: "0.9 km²",
-		radius: 600,
+		radius: 200,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2652,7 +2652,7 @@ export const chatuchakMarketDetail = {
 	overview: {
 		type: "Market",
 		area: "1.1 km²",
-		radius: 680,
+		radius: 182,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2878,11 +2878,11 @@ export const jimThompsonHouseDetail = {
 	img: "/images/spots/jim-thompson-house.png",
 	description:
 		"A stunning collection of traditional Thai houses showcasing the legacy of American entrepreneur Jim Thompson. This cultural heritage site offers serene running paths through beautiful gardens and traditional architecture.",
-	coordinates: { lat: 13.7469, lng: 100.5346 },
+	coordinates: { lat: 13.7489, lng: 100.5268 },
 	overview: {
 		type: "Museum",
 		area: "0.4 km²",
-		radius: 350,
+		radius: 100,
 		status: "Available",
 	},
 	quarterlyRankings: {
@@ -2995,10 +2995,10 @@ export const jimThompsonHouseDetail = {
 		"Jul - Sep": [
 			{
 				position: 1,
-				clubName: "Sunrise Squad",
-				clubLogo: "/images/club-flags/sunrise-squad.png",
-				members: 1850,
-				leader: "Somchai",
+				clubName: "Siam Runners",
+				clubLogo: "/images/club-flags/siam-runners.png",
+				members: 167,
+				leader: "Lisa",
 				points: 21345.67,
 				crown: "gold",
 			},
@@ -3108,11 +3108,11 @@ export const mbkCenterDetail = {
 	img: "/images/spots/mbk-center.png",
 	description:
 		"Bangkok's iconic shopping mall known for electronics, fashion, and local goods. This 8-story retail complex provides an intense urban running experience through one of Asia's most visited shopping destinations.",
-	coordinates: { lat: 13.744, lng: 100.5291 },
+	coordinates: { lat: 13.7446, lng: 100.5294 },
 	overview: {
 		type: "Mall",
 		area: "0.7 km²",
-		radius: 450,
+		radius: 144,
 		status: "Available",
 	},
 	quarterlyRankings: {
