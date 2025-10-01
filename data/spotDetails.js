@@ -2,11 +2,11 @@ export const siamSquareDetail = {
 	id: "siam_square",
 	name: "Siam Square",
 	district: "Pathum Wan",
-	img: "/images/spots/siam-square.png",
+	img: "/images/spots/siam-square.webp",
 	description:
 		"The vibrant heart of Bangkok's youth culture and shopping scene. A challenging urban running environment with high foot traffic, neon lights, and the energy of Thailand's most famous shopping district.",
 	coordinates: { lat: 13.7444, lng: 100.5332 },
-	overview: {
+	overviews: {
 		type: "Mall",
 		area: "1.5 km²",
 		radius: 145,
@@ -201,11 +201,11 @@ export const grandPalaceDetail = {
 	id: "grand_palace",
 	name: "Grand Palace",
 	district: "Phra Nakhon",
-	img: "/images/spots/grand-palace.png",
+	img: "/images/spots/grand-palace.webp",
 	description:
 		"Bangkok's most sacred and historically significant landmark. Running around this majestic royal complex offers both cultural immersion and competitive prestige, making it the ultimate prize for serious runners.",
 	coordinates: { lat: 13.75, lng: 100.4919 },
-	overview: {
+	overviews: {
 		type: "Landmark",
 		area: "2.0 km²",
 		radius: 154,
@@ -399,11 +399,11 @@ export const lumphiniParkDetail = {
 	id: "lumphini_park",
 	name: "Lumphini Park",
 	district: "Pathumwan",
-	img: "/images/spots/lumpini-park.png",
+	img: "/images/spots/lumpini-park.webp",
 	description:
 		"An oasis of tranquility in the heart of Bangkok's bustling metropolis. Lumphini Park offers a vast green space, a serene lake, and winding paths perfect for runners seeking to conquer a landmark spot.",
 	coordinates: { lat: 13.7307, lng: 100.5418 },
-	overview: {
+	overviews: {
 		type: "Park",
 		area: "1.13 km²",
 		radius: 500,
@@ -679,11 +679,11 @@ export const watPhoTempleDetail = {
 	id: "wat_pho_temple",
 	name: "Wat Pho Temple",
 	district: "Phra Nakhon",
-	img: "/images/spots/wat-pho.png",
+	img: "/images/spots/wat-pho.webp",
 	description:
 		"Home of the famous reclining Buddha and birthplace of traditional Thai massage. This temple complex offers a spiritually enriching running experience combined with architectural marvels.",
 	coordinates: { lat: 13.7465, lng: 100.4927 },
-	overview: {
+	overviews: {
 		type: "Temple",
 		area: "0.8 km²",
 		radius: 150,
@@ -877,11 +877,11 @@ export const watArunTempleDetail = {
 	id: "wat_arun_temple",
 	name: "Wat Arun Temple",
 	district: "Bangkok Yai",
-	img: "/images/spots/wat-arun.png",
+	img: "/images/spots/wat-arun.webp",
 	description:
 		"The Temple of Dawn stands majestically on the Chao Phraya River. This iconic riverside landmark offers breathtaking views and a challenging running route along the historic waterfront.",
 	coordinates: { lat: 13.7437, lng: 100.4889 },
-	overview: {
+	overviews: {
 		type: "Temple",
 		area: "0.6 km²",
 		radius: 144,
@@ -1075,11 +1075,11 @@ export const baiyokeTowerDetail = {
 	id: "baiyoke_tower",
 	name: "Baiyoke Tower",
 	district: "Ratchathewi",
-	img: "/images/spots/baiyoke-tower.png",
+	img: "/images/spots/baiyoke-tower.webp",
 	description:
 		"Bangkok's iconic skyscraper and once the tallest building in Southeast Asia. Running around this towering landmark provides an urban challenge with stunning city views and modern architecture.",
 	coordinates: { lat: 13.7542, lng: 100.5399 },
-	overview: {
+	overviews: {
 		type: "Landmark",
 		area: "1.3 km²",
 		radius: 150,
@@ -1273,11 +1273,11 @@ export const democracyMonumentDetail = {
 	id: "democracy_monument",
 	name: "Democracy Monument",
 	district: "Phra Nakhon",
-	img: "/images/spots/democracy-monument.png",
+	img: "/images/spots/democracy-monument.webp",
 	description:
 		"A historic symbol of Thailand's democratic ideals located at the heart of old Bangkok. This monument represents both political significance and urban running challenges in the bustling Ratchadamnoen area.",
 	coordinates: { lat: 13.7567, lng: 100.501855 },
-	overview: {
+	overviews: {
 		type: "Landmark",
 		area: "1.0 km²",
 		radius: 100,
@@ -1479,11 +1479,11 @@ export const iconsiamDetail = {
 	id: "iconsiam",
 	name: "ICONSIAM",
 	district: "Khlong San",
-	img: "/images/spots/iconsiam.png",
+	img: "/images/spots/iconsiam.webp",
 	description:
 		"Thailand's premier lifestyle destination along the Chao Phraya River. This world-class shopping complex offers a premium running experience with riverside views and luxury surroundings.",
 	coordinates: { lat: 13.7268, lng: 100.5103 },
-	overview: {
+	overviews: {
 		type: "Mall",
 		area: "2.2 km²",
 		radius: 176,
@@ -1685,11 +1685,11 @@ export const asiatiqueRiverfrontDetail = {
 	id: "asiatique_riverfront",
 	name: "Asiatique Riverfront",
 	district: "Bang Kho Laem",
-	img: "/images/spots/asiatique.png",
+	img: "/images/spots/asiatique.webp",
 	description:
 		"A charming riverside shopping and entertainment complex combining vintage charm with modern amenities. The waterfront promenade offers scenic running with river breezes and cultural attractions.",
 	coordinates: { lat: 13.70452, lng: 100.50262 },
-	overview: {
+	overviews: {
 		type: "Mall",
 		area: "1.6 km²",
 		radius: 200,
@@ -1923,11 +1923,11 @@ export const rajamangalaStadiumDetail = {
 	id: "rajamangala_stadium",
 	name: "Rajamangala Stadium",
 	district: "Bang Phli",
-	img: "/images/spots/rajamangala.png",
+	img: "/images/spots/rajamangala.webp",
 	description:
 		"Thailand's national stadium and largest sporting venue. This world-class facility provides the perfect environment for serious athletic training with professional-grade tracks and facilities.",
 	coordinates: { lat: 13.75547, lng: 100.62216 },
-	overview: {
+	overviews: {
 		type: "Stadium",
 		area: "2.0 km²",
 		radius: 150,
@@ -2185,11 +2185,11 @@ export const benjakittiParkDetail = {
 	id: "benjakitti_park",
 	name: "Benjakitti Park",
 	district: "Watthana",
-	img: "/images/spots/benjakitti-park.png",
+	img: "/images/spots/benjakitti-park.webp",
 	description:
 		"A modern urban park featuring innovative skywalk bridges through forest canopy. This contemporary green space offers unique elevated running experiences with stunning city skyline views.",
 	coordinates: { lat: 13.72965, lng: 100.5558 },
-	overview: {
+	overviews: {
 		type: "Park",
 		area: "1.4 km²",
 		radius: 500,
@@ -2415,11 +2415,11 @@ export const centralWorldPlazaDetail = {
 	id: "central_world_plaza",
 	name: "Central World Plaza",
 	district: "Pathum Wan",
-	img: "/images/spots/central-world.png",
+	img: "/images/spots/central-world.webp",
 	description:
 		"One of Bangkok's largest shopping complexes located in the heart of the city. This bustling commercial hub offers challenging urban running through Thailand's premier shopping and entertainment district.",
 	coordinates: { lat: 13.746335, lng: 100.53937 },
-	overview: {
+	overviews: {
 		type: "Mall",
 		area: "0.9 km²",
 		radius: 200,
@@ -2645,11 +2645,11 @@ export const chatuchakMarketDetail = {
 	id: "chatuchak_market",
 	name: "Chatuchak Weekend Market",
 	district: "Chatuchak",
-	img: "/images/spots/chatuchak-market.png",
+	img: "/images/spots/chatuchak-market.webp",
 	description:
 		"One of the world's largest weekend markets with over 15,000 stalls. This bustling marketplace offers a unique urban running challenge through narrow alleys filled with local culture, street food, and endless shopping opportunities.",
 	coordinates: { lat: 13.7998, lng: 100.5502 },
-	overview: {
+	overviews: {
 		type: "Market",
 		area: "1.1 km²",
 		radius: 182,
@@ -2875,11 +2875,11 @@ export const jimThompsonHouseDetail = {
 	id: "jim_thompson_house",
 	name: "Jim Thompson House",
 	district: "Pathum Wan",
-	img: "/images/spots/jim-thompson-house.png",
+	img: "/images/spots/jim-thompson-house.webp",
 	description:
 		"A stunning collection of traditional Thai houses showcasing the legacy of American entrepreneur Jim Thompson. This cultural heritage site offers serene running paths through beautiful gardens and traditional architecture.",
 	coordinates: { lat: 13.7489, lng: 100.5268 },
-	overview: {
+	overviews: {
 		type: "Museum",
 		area: "0.4 km²",
 		radius: 100,
@@ -3105,11 +3105,11 @@ export const mbkCenterDetail = {
 	id: "mbk_center",
 	name: "MBK Center",
 	district: "Pathum Wan",
-	img: "/images/spots/mbk-center.png",
+	img: "/images/spots/mbk-center.webp",
 	description:
 		"Bangkok's iconic shopping mall known for electronics, fashion, and local goods. This 8-story retail complex provides an intense urban running experience through one of Asia's most visited shopping destinations.",
 	coordinates: { lat: 13.7446, lng: 100.5294 },
-	overview: {
+	overviews: {
 		type: "Mall",
 		area: "0.7 km²",
 		radius: 144,

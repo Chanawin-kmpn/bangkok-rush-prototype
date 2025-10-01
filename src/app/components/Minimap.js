@@ -1,7 +1,7 @@
 import React from "react";
 import { Circle, MapContainer, Marker, TileLayer } from "react-leaflet";
 
-const Minimap = ({ lat, lng }) => {
+const Minimap = ({ lat, lng, radius }) => {
 	return (
 		<MapContainer
 			center={[lat, lng]}
@@ -14,7 +14,7 @@ const Minimap = ({ lat, lng }) => {
 			<TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
 			<Circle
 				center={[lat, lng]}
-				radius={300}
+				radius={radius}
 				fillColor="#4CAF50"
 				fillOpacity={0.2}
 				color="#4CAF50"
@@ -23,9 +23,12 @@ const Minimap = ({ lat, lng }) => {
 				position={[lat, lng]}
 				icon={
 					new L.DivIcon({
-						html: '<div style="width: 20px; height: 20px; background: #F44336; border-radius: 50%; border: 2px solid white;"></div>',
-						iconSize: [20, 20],
-						iconAnchor: [10, 10],
+						html: `<span class="relative flex size-3">
+  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
+  <span class="relative inline-flex size-3 rounded-full bg-red-500"></span>
+</span>`,
+						iconSize: [0, 0],
+						iconAnchor: [12 / 2, 12 / 2],
 					})
 				}
 			/>

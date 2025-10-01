@@ -7,54 +7,11 @@ import TopRank from "@/app/components/TopRank";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { MapPin } from "lucide-react";
+import SpotOverview from "@/app/components/SpotOverview";
 
 const Minimap = dynamic(() => import("@/app/components/Minimap"), {
 	ssr: false,
 });
-
-// Medal components
-const GoldCrown = () => (
-	<div className="flex items-center justify-center w-16 h-16 bg-gradient-to-b from-yellow-300 to-yellow-500 rounded-full border-4 border-white shadow-lg">
-		<span className="text-2xl">👑</span>
-	</div>
-);
-
-const SilverCrown = () => (
-	<div className="flex items-center justify-center w-14 h-14 bg-gradient-to-b from-gray-300 to-gray-500 rounded-full border-4 border-white shadow-lg">
-		<span className="text-xl">👑</span>
-	</div>
-);
-
-const BronzeCrown = () => (
-	<div className="flex items-center justify-center w-12 h-12 bg-gradient-to-b from-amber-600 to-amber-800 rounded-full border-4 border-white shadow-lg">
-		<span className="text-lg">👑</span>
-	</div>
-);
-
-// Club flag component
-const ClubFlag = ({ club, rank, isTopThree = false }) => {
-	const flagSize = isTopThree ? "w-20 h-24" : "w-14 h-16";
-	const textSize = isTopThree ? "text-xs" : "text-xs";
-
-	return (
-		<div
-			className={`${flagSize} bg-gradient-to-b from-red-500 to-red-700 rounded-t-lg relative shadow-lg`}
-		>
-			<div className="absolute inset-1 bg-white rounded-sm flex flex-col items-center justify-center p-1">
-				<div className="w-8 h-8 bg-gray-200 rounded flex items-center justify-center">
-					<span className="text-lg">🏃‍♂️</span>
-				</div>
-				<div className={`${textSize} font-bold text-center mt-1 text-gray-800`}>
-					{club.clubName
-						.split(" ")
-						.map((word) => word.slice(0, 3))
-						.join(" ")}
-				</div>
-			</div>
-			<div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-red-700"></div>
-		</div>
-	);
-};
 
 const Page = () => {
 	const [spot, setSpot] = useState(null);
@@ -100,8 +57,8 @@ const Page = () => {
 	return (
 		<div className="space-y-8 lg:space-y-16">
 			{/* Detail Section */}
-			<div className="h-dvh glassmorphism w-full flex flex-col lg:flex-row">
-				<div className="max-lg:max-h-[400px] h-full w-full lg:w-1/2 relative">
+			<div className="glassmorphism w-full flex flex-col rounded-[40px] overflow-hidden lg:flex-row">
+				<div className="max-lg:min-h-[400px] lg:h-[960px] w-full lg:w-1/2 relative">
 					<Image
 						src={spot.img}
 						fill
@@ -109,7 +66,7 @@ const Page = () => {
 						alt="Spot Image"
 					/>
 				</div>
-				<div className="px-4 py-8 lg:px-16 lg:py-20">
+				<div className="px-4 py-8 lg:px-16 lg:py-20 space-y-4 lg:w-1/2">
 					{/* Detail Header */}
 					<div>
 						<h1 className="text-[2rem] lg:text-[2.5rem]">{spot.name}</h1>
@@ -120,19 +77,34 @@ const Page = () => {
 							</div>
 							<span
 								className={cn("font-fciconicBW ", {
-									"text-success": spot.overview.status === "Available",
-									"text-error": spot.overview.status === "Closed",
+									"text-success": spot.overviews.status === "Available",
+									"text-error": spot.overviews.status === "Closed",
 								})}
 							>
-								{spot.overview.status}
+								{spot.overviews.status}
 							</span>
 						</div>
 					</div>
 					{/* Overview */}
-					<div></div>
+					<div className="grid grid-cols-3 gap-2 justify-between w-full lg:gap-4 lg:w-fit">
+						<SpotOverview
+							overviews={[
+								spot.overviews.type,
+								spot.overviews.radius,
+								spot.overviews.area,
+							]}
+						/>
+					</div>
 					{/* Description */}
-					<p></p>
+					<p>{spot.description}</p>
 					{/* MiniMap */}
+					<div className="h-80 rounded-lg overflow-hidden">
+						<Minimap
+							lat={spot.coordinates.lat}
+							lng={spot.coordinates.lng}
+							radius={spot.overviews.radius}
+						/>
+					</div>
 				</div>
 			</div>
 			{/* Rank Section */}
