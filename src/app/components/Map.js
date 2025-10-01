@@ -103,7 +103,6 @@ const Map = () => {
 	};
 
 	const spotsData = processSpotData();
-	console.log(radiusColor.mall.fillColor);
 
 	return (
 		<div className="w-full h-dvh relative  rounded-[40px] overflow-hidden">
@@ -162,8 +161,9 @@ const Map = () => {
 										<Image
 											src={spot.image}
 											fill
+											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 											alt="spot-image"
-											className="object-cover"
+											className="object-cover object-[0%_45%]"
 										/>
 									</div>
 									<div className="flex flex-col p-4 gap-4">
@@ -180,7 +180,7 @@ const Map = () => {
 														{spot.status}
 													</span>
 												</div>
-												<div className="flex gap-1 text-textGray">
+												<div className="flex gap-1 items-center text-textGray">
 													<MapPin size={16} />
 													<span>
 														{spot.district} • {spot.type}
