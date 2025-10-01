@@ -1,6 +1,6 @@
-import BackgroundLayers from "./components/BackgroundLayers";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import BackgroundLayers from "../components/BackgroundLayers";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 

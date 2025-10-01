@@ -9,9 +9,9 @@ import {
 	TileLayer,
 } from "react-leaflet";
 import L from "leaflet";
-import { allSpotsDetailComplete } from "../../../data/spotDetails";
-import { radiusColor } from "../../../constants";
-import { calculateMarkerSize, getRadiusColor } from "../../../helpers/helpers";
+import { allSpotsDetailComplete } from "../../data/spotDetails";
+import { radiusColor } from "../../constants";
+import { calculateMarkerSize, getRadiusColor } from "../../helpers/helpers";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";

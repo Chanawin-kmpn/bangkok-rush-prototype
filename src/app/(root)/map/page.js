@@ -1,11 +1,11 @@
 "use client";
-import DiscoveredSpot from "@/app/components/DiscoveredSpot";
+import DiscoveredSpot from "@/components/DiscoveredSpot";
 import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 import Loading from "./loading";
-import SpotMapSkeleton from "@/app/components/skeletons/SpotMapSkeleton";
+import SpotMapSkeleton from "@/components/skeletons/SpotMapSkeleton";
 
-const SpotMap = dynamic(() => import("@/app/components/Map"), {
+const SpotMap = dynamic(() => import("@/components/Map"), {
 	ssr: false,
 	loading: () => <SpotMapSkeleton />,
 });

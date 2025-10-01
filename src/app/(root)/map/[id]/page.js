@@ -3,13 +3,13 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { allSpotsDetailComplete } from "../../../../../data/spotDetails";
 import dynamic from "next/dynamic";
-import TopRank from "@/app/components/TopRank";
+import TopRank from "@/components/TopRank";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { MapPin } from "lucide-react";
-import SpotOverview from "@/app/components/SpotOverview";
+import SpotOverview from "@/components/SpotOverview";
 
-const Minimap = dynamic(() => import("@/app/components/Minimap"), {
+const Minimap = dynamic(() => import("@/components/Minimap"), {
 	ssr: false,
 });
 
