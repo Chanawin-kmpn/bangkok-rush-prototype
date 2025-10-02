@@ -33,3 +33,11 @@ export const calculateMarkerSize = (radius, isLeading = false) => {
 	// เพิ่มขนาดถ้า Sunrise Squad นำ
 	return isLeading ? baseSize + 6 : baseSize;
 };
+
+export const getCurrentQuarterFromDate = () => {
+	const month = new Date().getMonth(); // 0-11
+	if (month >= 0 && month <= 2) return "Jan - Mar";
+	if (month >= 3 && month <= 5) return "Apr - Jun";
+	if (month >= 6 && month <= 8) return "Jul - Sep";
+	return "Oct - Dec";
+};

@@ -113,7 +113,7 @@ const Footer = () => {
 						Copyright © 2025 Bangkok Rush. All rights reserved.
 					</p>
 				</div>
-				<div className="space-x-2 [&_a]:text-xs lg:[&_a]:text-base text-textGray">
+				<div className="space-x-2 [&_a]:text-xs [&_a]:hover:text-primary lg:[&_a]:text-base text-textGray [&_a]:transition-all">
 					<Link href="/">Privacy Policy</Link>
 					<span>|</span>
 					<Link href="/">Term of Conditions</Link>

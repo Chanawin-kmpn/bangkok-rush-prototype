@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import {
 	Circle,
 	LayerGroup,
@@ -17,6 +17,7 @@ import { MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ScoreBar from "./ScoreBar";
 import GradientLinkBtn from "./GradientLinkBtn";
+import { useQuarters } from "../../context/QuartersContext";
 
 // สร้าง custom marker สำหรับ club ที่นำ
 const createClubMarker = (clubLogo, radius, isLeading = false) => {
@@ -53,8 +54,7 @@ const createUndiscoveredMarker = ({ radius }) => {
 
 const Map = () => {
 	const bangkokCenter = [13.7563, 100.5018];
-	const currentQuarter = "Jul - Sep"; // ตุลาคม
-
+	const { currentQuarter } = useQuarters();
 	// ประมวลผลข้อมูล spots
 	const processSpotData = () => {
 		return Object.values(allSpotsDetailComplete).map((spot) => {
