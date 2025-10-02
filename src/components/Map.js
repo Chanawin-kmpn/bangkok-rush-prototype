@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import {
 	Circle,
 	LayerGroup,
@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import ScoreBar from "./ScoreBar";
 import GradientLinkBtn from "./GradientLinkBtn";
 import { useQuarters } from "../../context/QuartersContext";
+import MapLegend from "./MapLegend";
 
 // สร้าง custom marker สำหรับ club ที่นำ
 const createClubMarker = (clubLogo, radius, isLeading = false) => {
@@ -53,8 +54,11 @@ const createUndiscoveredMarker = ({ radius }) => {
 };
 
 const Map = () => {
+	const [isShowRadius, setIsShowRadius] = useState(true);
 	const bangkokCenter = [13.7563, 100.5018];
 	const { currentQuarter } = useQuarters();
+	console.log(currentQuarter);
+
 	// ประมวลผลข้อมูล spots
 	const processSpotData = () => {
 		return Object.values(allSpotsDetailComplete).map((spot) => {
@@ -120,27 +124,29 @@ const Map = () => {
 				{spotsData.map((spot) => (
 					<LayerGroup key={spot.id}>
 						{/* Green Circle สำหรับ spots ที่ Sunrise Squad นำ */}
-						<Circle
-							center={[spot.coordinates.lat, spot.coordinates.lng]}
-							radius={spot.radius}
-							pathOptions={
-								spot.isDiscovered
-									? {
-											fillColor: getRadiusColor(spot.type).fillColor,
-											fillOpacity: 0.5,
-											color: getRadiusColor(spot.type).color,
-											weight: 2,
-											opacity: 0.6,
-									  }
-									: {
-											fillColor: "#D1D5DB",
-											fillOpacity: 0.5,
-											color: "#9CA3AF",
-											weight: 2,
-											opacity: 0.6,
-									  }
-							}
-						/>
+						{isShowRadius && (
+							<Circle
+								center={[spot.coordinates.lat, spot.coordinates.lng]}
+								radius={spot.radius}
+								pathOptions={
+									spot.isDiscovered
+										? {
+												fillColor: getRadiusColor(spot.type).fillColor,
+												fillOpacity: 0.5,
+												color: getRadiusColor(spot.type).color,
+												weight: 2,
+												opacity: 0.6,
+										  }
+										: {
+												fillColor: "#D1D5DB",
+												fillOpacity: 0.5,
+												color: "#9CA3AF",
+												weight: 2,
+												opacity: 0.6,
+										  }
+								}
+							/>
+						)}
 
 						{/* Markers */}
 						<Marker
@@ -254,30 +260,11 @@ const Map = () => {
 			</MapContainer>
 
 			{/* Map Legend */}
-			<div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-[1000] min-w-[200px] hidden lg:block">
-				<h4 className="font-bold text-gray-800 mb-3">Map Legend</h4>
-				<div className="space-y-2 text-sm">
-					<div className="flex items-center space-x-2">
-						<div className="w-4 h-4 bg-orange-500 rounded flex items-center justify-center text-white text-xs">
-							🏃‍♂️
-						</div>
-						<span>Discovered Spot</span>
-					</div>
-					<div className="flex items-center space-x-2">
-						<div className="w-4 h-4 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-xs">
-							?
-						</div>
-						<span>Undiscovered Spot</span>
-					</div>
-					<div className="flex items-center space-x-2">
-						<div className="w-4 h-4 bg-green-500 rounded opacity-30"></div>
-						<span>Sunrise Squad Leading</span>
-					</div>
-				</div>
-				<div className="mt-3 pt-2 border-t text-xs text-gray-500">
-					Current: Oct - Dec 2024
-				</div>
-			</div>
+			<MapLegend
+				showRadius={isShowRadius}
+				setShowRadius={setIsShowRadius}
+				currentQuarter={currentQuarter}
+			/>
 		</div>
 	);
 };

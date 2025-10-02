@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className="relative bg-white">
-				<QuartersProvider defaultQuarter="Jul - Sep">
+				<QuartersProvider defaultQuarter="Oct - Dec">
 					<BackgroundLayers position="top" />
 					<div className="h-full mx-auto flex items-center flex-col py-4 gap-8 lg:gap-16 max-w-[1440px] lg:px-16 px-4">
 						<Navbar />

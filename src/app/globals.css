@@ -138,6 +138,10 @@ p {
 	}
 }
 
+.leaflet-bottom {
+	display: none;
+}
+
 @layer utilities {
 	.glassmorphism {
 		@apply bg-[#ffffff]/20 border border-[#fff] w-full;
