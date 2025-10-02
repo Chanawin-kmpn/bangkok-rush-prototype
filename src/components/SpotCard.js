@@ -10,7 +10,7 @@ const SpotCard = ({ spot }) => {
 
 	return (
 		<div className="bg-white rounded-md lg:rounded-2xl overflow-hidden flex lg:flex-col">
-			<div className="relative w-2/4 h-full lg:w-full lg:h-[270px]">
+			<div className="relative w-2/4 lg:w-full lg:h-[270px]">
 				<Image
 					src={img}
 					fill

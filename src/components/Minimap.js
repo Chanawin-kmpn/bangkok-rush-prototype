@@ -11,7 +11,10 @@ const Minimap = ({ lat, lng, radius }) => {
 			dragging={false}
 			scrollWheelZoom={false}
 		>
-			<TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+			<TileLayer
+				attribution='&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+				url="https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg"
+			/>
 			<Circle
 				center={[lat, lng]}
 				radius={radius}
@@ -24,9 +27,10 @@ const Minimap = ({ lat, lng, radius }) => {
 				icon={
 					new L.DivIcon({
 						html: `<span class="relative flex size-3">
-  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
-  <span class="relative inline-flex size-3 rounded-full bg-red-500"></span>
+  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondery/60 opacity-75"></span>
+  <span class="relative inline-flex size-3 rounded-full bg-secondery"></span>
 </span>`,
+						className: "custom-club-marker",
 						iconSize: [0, 0],
 						iconAnchor: [12 / 2, 12 / 2],
 					})
