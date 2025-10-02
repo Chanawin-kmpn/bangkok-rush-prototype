@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className="relative bg-white">
 				<BackgroundLayers position="top" />
-				<div className="h-full mx-auto flex items-center flex-col py-4 gap-16 max-w-[1440px] lg:px-16 px-4">
+				<div className="h-full mx-auto flex items-center flex-col py-4 gap-8 lg:gap-16 max-w-[1440px] lg:px-16 px-4">
 					<Navbar />
 					<div className="flex-1 w-full">{children}</div>
 					<Footer />

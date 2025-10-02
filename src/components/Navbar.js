@@ -105,7 +105,7 @@ const Navbar = () => {
 				{isVisible && (
 					<div
 						ref={dropdownRef}
-						className="glassmorphism rounded-[25px] absolute top-full left-0 right-0 mt-4 backdrop-blur-sm p-4 shadow-lg lg:hidden"
+						className="glassmorphism rounded-[25px] absolute top-full left-0 right-0 mt-4 backdrop-blur-sm p-4 shadow-lg z-50 lg:hidden"
 					>
 						<div className="flex flex-col space-y-4">
 							<Link

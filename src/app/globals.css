@@ -124,7 +124,7 @@ p {
 }
 
 .leaflet-popup-content {
-	width: 400px !important;
+	width: fit-content !important;
 	margin: 0 !important;
 	overflow: hidden;
 

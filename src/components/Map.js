@@ -105,7 +105,7 @@ const Map = () => {
 	const spotsData = processSpotData();
 
 	return (
-		<div className="w-full h-dvh relative  rounded-[40px] overflow-hidden">
+		<div className="w-full h-dvh relative rounded-[40px] overflow-hidden z-40">
 			<MapContainer
 				center={bangkokCenter}
 				zoom={12}
@@ -156,7 +156,7 @@ const Map = () => {
 							}
 						>
 							<Popup>
-								<div className="min-w-[400px] flex flex-col">
+								<div className="lg:min-w-[400px] flex flex-col">
 									<div className="relative w-full h-[270px] rounded-t-[12px] overflow-hidden">
 										<Image
 											src={spot.image}
@@ -254,7 +254,7 @@ const Map = () => {
 			</MapContainer>
 
 			{/* Map Legend */}
-			<div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-[1000] min-w-[200px]">
+			<div className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-[1000] min-w-[200px] hidden lg:block">
 				<h4 className="font-bold text-gray-800 mb-3">Map Legend</h4>
 				<div className="space-y-2 text-sm">
 					<div className="flex items-center space-x-2">
