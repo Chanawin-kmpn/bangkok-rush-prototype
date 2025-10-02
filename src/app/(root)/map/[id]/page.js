@@ -8,14 +8,17 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { MapPin } from "lucide-react";
 import SpotOverview from "@/components/SpotOverview";
+import { useQuarters } from "../../../../../context/QuartersContext";
+import RankingLeaderboard from "@/components/RankingLeaderboard";
 
 const Minimap = dynamic(() => import("@/components/Minimap"), {
 	ssr: false,
 });
 
 const Page = () => {
+	const { currentQuarter } = useQuarters();
 	const [spot, setSpot] = useState(null);
-	const [quarter, setQuarter] = useState("Jul - Sep");
+	const [initialQuarter, setInitialQuarter] = useState(currentQuarter);
 	const [rankings, setRankings] = useState([]);
 	const { id } = useParams();
 
@@ -39,10 +42,10 @@ const Page = () => {
 
 	useEffect(() => {
 		if (spot) {
-			const currentRankings = getSpotRanking(spot, quarter);
+			const currentRankings = getSpotRanking(spot, initialQuarter);
 			setRankings(currentRankings);
 		}
-	}, [spot, quarter]);
+	}, [spot, initialQuarter]);
 
 	if (!spot) {
 		return (
@@ -52,21 +55,19 @@ const Page = () => {
 		);
 	}
 
-	const topThree = rankings.slice(0, 3);
-
 	return (
-		<div className="space-y-8 lg:space-y-16">
+		<div className="space-y-8 lg:space-y-16 ">
 			{/* Detail Section */}
-			<div className="glassmorphism w-full flex flex-col rounded-[40px] overflow-hidden lg:flex-row">
-				<div className="max-lg:min-h-[400px] lg:h-[960px] w-full lg:w-1/2 relative">
+			<div className=" w-full flex flex-col lg:flex-row glassmorphism rounded-[40px]  overflow-hidden">
+				<div className="max-lg:min-h-[400px] lg:h-[960px] w-full lg:w-1/2 relative ">
 					<Image
 						src={spot.img}
 						fill
-						className="object-cover"
+						className="object-cover max-lg:rounded-t-[40px]"
 						alt="Spot Image"
 					/>
 				</div>
-				<div className="px-4 py-8 lg:px-16 lg:py-20 space-y-4 lg:w-1/2">
+				<div className="px-4 py-8 lg:px-16 lg:py-20 space-y-4 lg:w-1/2 ">
 					{/* Detail Header */}
 					<div>
 						<h1 className="text-[2rem] lg:text-[2.5rem]">{spot.name}</h1>
@@ -108,7 +109,31 @@ const Page = () => {
 				</div>
 			</div>
 			{/* Rank Section */}
-			<div></div>
+			<div className="space-y-8 lg:space-y-16">
+				{/* Quarter Selector */}
+				<div>
+					<div className="lg:flex justify-center items-center gap-10 hidden">
+						{quarters.map((quarter, index) => (
+							<button
+								key={index}
+								className={cn(
+									"font-fciconicBW text-textGray text-[32px] cursor-pointer",
+									{
+										"text-secondery": initialQuarter === quarter,
+									}
+								)}
+								onClick={() => setInitialQuarter(quarter)}
+							>
+								{quarter}
+							</button>
+						))}
+					</div>
+				</div>
+				{/* Ranking leaderboard */}
+				<div className="lg:mt-96 mt-32">
+					<RankingLeaderboard rankings={rankings} />
+				</div>
+			</div>
 		</div>
 	);
 };
