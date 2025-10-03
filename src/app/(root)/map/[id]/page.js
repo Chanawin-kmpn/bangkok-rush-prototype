@@ -112,6 +112,7 @@ const Page = () => {
 			<div className="space-y-8 lg:space-y-16">
 				{/* Quarter Selector */}
 				<div>
+					{/* Desktop Selector */}
 					<div className="lg:flex justify-center items-center gap-10 hidden">
 						{quarters.map((quarter, index) => (
 							<button
@@ -128,9 +129,11 @@ const Page = () => {
 							</button>
 						))}
 					</div>
+					{/* Mobile Selector */}
+					<div></div>
 				</div>
 				{/* Ranking leaderboard */}
-				<div className="lg:mt-96 mt-32">
+				<div className="lg:mt-[400px] mt-32">
 					<RankingLeaderboard rankings={rankings} />
 				</div>
 			</div>

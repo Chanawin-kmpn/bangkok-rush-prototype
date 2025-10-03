@@ -1,7 +1,10 @@
 import React from "react";
 import { Circle, MapContainer, Marker, TileLayer } from "react-leaflet";
 
-const Minimap = ({ lat, lng, radius }) => {
+const Minimap = ({ lat, lng, radius, stadiaApiKey }) => {
+	// ใช้ API key ที่ส่งมาผ่าน props หรือใช้จาก environment variable
+	const apiKey = process.env.STADIA_API_KEY;
+
 	return (
 		<MapContainer
 			center={[lat, lng]}
@@ -13,7 +16,7 @@ const Minimap = ({ lat, lng, radius }) => {
 		>
 			<TileLayer
 				attribution='&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				url="https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg"
+				url={`https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg?api_key=${apiKey}`}
 			/>
 			<Circle
 				center={[lat, lng]}

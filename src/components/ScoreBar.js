@@ -30,14 +30,18 @@ const ScoreBar = ({
 					className={cn(
 						"font-fciconicBW text-center text-primary! text-lg lg:text-[64px] w-9 lg:w-[125px]",
 						{
-							"w-9!": isPopup,
+							"w-9! text-3xl!": isPopup,
 						}
 					)}
 				>
 					{position}
 				</p>
 				<div className="w-full flex items-center">
-					<div className="relative size-[50px] lg:size-[150px]">
+					<div
+						className={cn("relative size-[50px] lg:size-[150px]", {
+							"size-[50px]!": isPopup,
+						})}
+					>
 						<Image
 							src={clubLogo}
 							fill
@@ -47,24 +51,60 @@ const ScoreBar = ({
 						/>
 					</div>
 					<div className="">
-						<p className="font-fciconicBW text-sm text-dark! lg:text-[40px]">
+						<p
+							className={cn(
+								"font-fciconicBW text-sm text-dark! lg:text-[40px]",
+								{
+									"text-sm!": isPopup,
+								}
+							)}
+						>
 							{clubName}
 						</p>
 						<div className="flex gap-4 items-center mt-0.5">
-							<div className="flex gap-1 items-center text-xs font-fciconicBW text-dark/50">
-								<Users size={16} className="text-primary" />
+							<div
+								className={cn(
+									"flex gap-1 lg:gap-2 items-center text-xs lg:text-lg font-fciconicBW text-dark/50",
+									{
+										"text-xs!": isPopup,
+									}
+								)}
+							>
+								<Users
+									className={cn("text-primary size-4 lg:size-8", {
+										"size-4!": isPopup,
+									})}
+								/>
 								{members}
 							</div>
-							<div className="flex gap-1 items-center text-xs font-fciconicBW text-dark/50">
-								<Crown size={16} className="text-yellow" />
+							<div
+								className={cn(
+									"flex gap-1 lg:gap-2 items-center text-xs lg:text-lg font-fciconicBW text-dark/50",
+									{
+										"text-xs!": isPopup,
+									}
+								)}
+							>
+								<Crown
+									className={cn("text-yellow size-4 lg:size-8", {
+										"size-4!": isPopup,
+									})}
+								/>
 								{leader}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div className="bg-clip-text bg-gradient-to-r from-primary to-secondery">
-				<span className="font-fciconicBW text-transparent text-base lg:text-[32px]">
+			<div className="bg-clip-text bg-gradient-to-r from-secondery to-primary">
+				<span
+					className={cn(
+						"font-fciconicBW text-transparent text-base lg:text-[32px]",
+						{
+							"text-base!": isPopup,
+						}
+					)}
+				>
 					{points}
 				</span>
 			</div>
