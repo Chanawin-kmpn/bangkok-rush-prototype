@@ -19,6 +19,8 @@ import ScoreBar from "./ScoreBar";
 import GradientLinkBtn from "./GradientLinkBtn";
 import { useQuarters } from "../../context/QuartersContext";
 import MapLegend from "./MapLegend";
+import { sunriseSquadClub } from "../../data/clubData";
+import UndiscoveredMap from "./UndiscoveredMap";
 
 // สร้าง custom marker สำหรับ club ที่นำ
 const createClubMarker = (clubLogo, radius, isLeading = false) => {
@@ -57,7 +59,7 @@ const Map = () => {
 	const [isShowRadius, setIsShowRadius] = useState(true);
 	const bangkokCenter = [13.7563, 100.5018];
 	const { currentQuarter } = useQuarters();
-	console.log(currentQuarter);
+	const clubName = sunriseSquadClub.name;
 
 	// ประมวลผลข้อมูล spots
 	const processSpotData = () => {
@@ -107,6 +109,8 @@ const Map = () => {
 	};
 
 	const spotsData = processSpotData();
+
+	console.log(spotsData[0].sunriseRank);
 
 	return (
 		<div className="w-full h-dvh relative rounded-[40px] overflow-hidden z-40">
@@ -163,95 +167,116 @@ const Map = () => {
 						>
 							<Popup>
 								<div className="lg:min-w-[400px] flex flex-col">
-									<div className="relative w-full h-[270px] rounded-t-[12px] overflow-hidden">
-										<Image
-											src={spot.image}
-											fill
-											sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-											alt="spot-image"
-											className="object-cover object-[0%_45%]"
-										/>
-									</div>
-									<div className="flex flex-col p-4 gap-4">
-										<div className="flex items-center justify-between">
-											<div className="flex flex-col gap-2">
-												<div className="flex items-center gap-2">
-													<h3 className="text-lg">{spot.name}</h3>
-													<span
-														className={cn("font-fciconicBW ", {
-															"text-success": spot.status === "Available",
-															"text-error": spot.status === "Closed",
-														})}
-													>
-														{spot.status}
-													</span>
-												</div>
-												<div className="flex gap-1 items-center text-textGray">
-													<MapPin size={16} />
-													<span>
-														{spot.district} • {spot.type}
-													</span>
-												</div>
+									{spot.isDiscovered ? (
+										<>
+											<div className="relative w-full h-[270px] rounded-t-[12px] overflow-hidden">
+												<Image
+													src={spot.image}
+													fill
+													sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+													alt="spot-image"
+													className="object-cover object-[0%_45%]"
+												/>
 											</div>
-										</div>
-										{spot.isDiscovered ? (
-											<div className="space-y-4">
-												<div className="space-y-2">
-													<h4 className="font-fciconicBW text-dark text-sm">
-														Top Club Rank
-													</h4>
+											<div className="flex flex-col p-4 gap-4">
+												<div className="flex items-center justify-between">
 													<div className="flex flex-col gap-2">
-														{spot.topThree.map(
-															({
-																clubName,
-																clubLogo,
-																position,
-																points,
-																members,
-																leader,
-															}) => (
+														<div className="flex items-center gap-2">
+															<h3 className="text-lg">{spot.name}</h3>
+															<span
+																className={cn("font-fciconicBW ", {
+																	"text-success": spot.status === "Available",
+																	"text-error": spot.status === "Closed",
+																})}
+															>
+																{spot.status}
+															</span>
+														</div>
+														<div className="flex gap-1 items-center text-textGray">
+															<MapPin size={16} />
+															<span>
+																{spot.district} • {spot.type}
+															</span>
+														</div>
+													</div>
+												</div>
+												{spot.isDiscovered && (
+													<div className="space-y-4">
+														<div className="space-y-2">
+															<h4 className="font-fciconicBW text-dark text-sm">
+																Top Club Rank
+															</h4>
+															<div className="flex flex-col gap-2">
+																{spot.topThree.map(
+																	({
+																		clubName,
+																		clubLogo,
+																		position,
+																		points,
+																		members,
+																		leader,
+																	}) => (
+																		<ScoreBar
+																			clubName={clubName}
+																			clubLogo={clubLogo}
+																			position={position}
+																			leader={leader}
+																			members={members}
+																			points={points}
+																			key={clubName}
+																			isPopup
+																		/>
+																	)
+																)}
+															</div>
+														</div>
+														<div className="space-y-2">
+															<h4 className="font-fciconicBW text-dark text-sm">
+																Your Club Rank
+															</h4>
+															<div className="flex flex-col gap-2">
 																<ScoreBar
-																	clubName={clubName}
-																	clubLogo={clubLogo}
-																	position={position}
-																	leader={leader}
-																	members={members}
-																	points={points}
-																	key={clubName}
+																	clubName={spot.sunriseRank.clubName}
+																	clubLogo={spot.sunriseRank.clubLogo}
+																	position={spot.sunriseRank.position}
+																	leader={spot.sunriseRank.leader}
+																	members={spot.sunriseRank.members}
+																	points={spot.sunriseRank.points}
 																	isPopup
 																/>
-															)
-														)}
+															</div>
+														</div>
+														<div>
+															<GradientLinkBtn
+																label="View Details"
+																isGradient
+																link={`map/${spot.id}`}
+															/>
+														</div>
 													</div>
-												</div>
-												<div className="space-y-2">
-													<h4 className="font-fciconicBW text-dark text-sm">
-														Your Club Rank
-													</h4>
-													<div className="flex flex-col gap-2">
-														<ScoreBar
-															clubName={spot.sunriseRank.clubName}
-															clubLogo={spot.sunriseRank.clubLogo}
-															position={spot.sunriseRank.position}
-															leader={spot.sunriseRank.leader}
-															members={spot.sunriseRank.members}
-															points={spot.sunriseRank.points}
-															isPopup
-														/>
-													</div>
-												</div>
-												<div>
-													<GradientLinkBtn
-														label="View Details"
-														isGradient
-														link={`map/${spot.id}`}
-													/>
-												</div>
+												)}
 											</div>
-										) : (
-											<div></div>
-										)}
-									</div>
+										</>
+									) : (
+										<>
+											<div className="relative w-full h-[270px] rounded-t-[12px] overflow-hidden">
+												<UndiscoveredMap />
+											</div>
+											<div className="space-y-3 p-4">
+												<h3 className="text-2xl text-dark text-center">
+													Mystery Spot Awaits!
+												</h3>
+												<p className="text-center text-base">
+													Your club hasn&apos;t discovered this spot yet.
+													<br /> Be the first explorer to claim it for {""}
+													<span className="font-fciconicBW text-primary">
+														{clubName}
+													</span>
+													!
+												</p>
+											</div>
+										</>
+									)}
 								</div>
 							</Popup>
 						</Marker>
