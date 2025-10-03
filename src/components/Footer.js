@@ -54,6 +54,7 @@ const Footer = () => {
 							width={300}
 							height={150}
 							alt="bangkok-rush-logo"
+							className="object-contain w-auto h-40"
 						/>
 					</Link>
 					<p className="text-gray-600 lg:text-left font-bold">

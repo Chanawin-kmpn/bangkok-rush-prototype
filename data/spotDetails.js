@@ -605,7 +605,7 @@ export const lumphiniParkDetail = {
 				clubName: "Chiang Mai Trail",
 				clubLogo: "/images/club-flags/chiang-mai-trail.png",
 				members: 198,
-				laeder: "Prasert",
+				leader: "Prasert",
 				points: 6798.53,
 			},
 			{

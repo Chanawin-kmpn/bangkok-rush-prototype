@@ -64,7 +64,7 @@ const ScoreBar = ({
 				</div>
 			</div>
 			<div className="bg-clip-text bg-gradient-to-r from-primary to-secondery">
-				<span className="font-fciconicBW text-transparent text-sm lg:text-[32px]">
+				<span className="font-fciconicBW text-transparent text-base lg:text-[32px]">
 					{points}
 				</span>
 			</div>

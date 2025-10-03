@@ -68,7 +68,7 @@ const Navbar = () => {
 							width={80}
 							height={40}
 							alt="bangkok-rush-logo"
-							className="cursor-pointer"
+							className="cursor-pointer w-auto h-auto"
 						/>
 					</Link>
 					<div>
