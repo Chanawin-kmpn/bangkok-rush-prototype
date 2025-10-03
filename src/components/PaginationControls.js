@@ -22,7 +22,7 @@ const PaginationControls = ({
 				<>
 					<Button className="mx-auto" label="Show More" onClick={onShowMore} />
 					<div className="mt-3 text-sm text-gray-500">
-						Showing {visibleCount + 3} of {totalCount} {itemLabel}
+						Showing {visibleCount} of {totalCount} {itemLabel}
 					</div>
 				</>
 			)}

@@ -59,7 +59,7 @@ const RankingLeaderboard = ({ rankings }) => {
 
 					{/* Pagination Controls */}
 					<PaginationControls
-						visibleCount={visibleCount}
+						visibleCount={visibleCount + 3}
 						totalCount={restRanks.length + 3}
 						initialCount={INITIAL_COUNT}
 						hasMore={hasMore}
