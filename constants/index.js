@@ -47,3 +47,30 @@ export const QUARTERS = [
 		shortLabel: "Q4",
 	},
 ];
+
+export const filterOptions = [
+	{ value: "default", label: "Default Order" },
+	{ value: "position-asc", label: "Best Position First" },
+	{ value: "position-desc", label: "Worst Position First" },
+	{ value: "score-desc", label: "Highest Score First" },
+	{ value: "score-asc", label: "Lowest Score First" },
+];
+
+export const quarterOptions = [
+	{
+		value: "Jan - Mar",
+		label: "Jan - Mar",
+	},
+	{
+		value: "Apr - Jun",
+		label: "Apr - Jun",
+	},
+	{
+		value: "Jul - Sep",
+		label: "Jul - Sep",
+	},
+	{
+		value: "Oct - Dec",
+		label: "Oct - Dec",
+	},
+];

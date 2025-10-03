@@ -1,74 +1,25 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { sunriseSquadClub } from "../../data/clubData";
 import SpotCard from "./SpotCard";
 import { allSpotsDetailComplete } from "../../data/spotDetails";
-import Button from "./Button";
-import { ListFilter, Check } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { useQuarters } from "../../context/QuartersContext";
-import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
+import DropdownButton from "./DropdownButton";
+import PaginationControls from "./PaginationControls";
+import { filterOptions } from "../../constants";
 
 const DiscoveredSpot = () => {
 	const { currentQuarter } = useQuarters();
 	const [visibleCount, setVisibleCount] = useState(6);
-	const [sortBy, setSortBy] = useState("default"); // default, position-asc, position-desc, score-asc, score-desc
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const [isFilterVisible, setIsFilterVisible] = useState(false);
+	const [sortBy, setSortBy] = useState("default");
 
 	const INITIAL_COUNT = 6;
 	const LOAD_MORE_COUNT = 6;
 
-	const filterDropdownRef = useRef(null);
-	const filterTl = useRef(null);
-
-	// GSAP Animation for Filter Dropdown
-	useGSAP(() => {
-		if (filterDropdownRef.current) {
-			filterTl.current = gsap.timeline({ paused: true });
-
-			gsap.set(filterDropdownRef.current, {
-				y: -20,
-				opacity: 0,
-				scale: 0.95,
-			});
-
-			filterTl.current.to(filterDropdownRef.current, {
-				y: 0,
-				opacity: 1,
-				scale: 1,
-				duration: 0.3,
-				ease: "back.out(1.7)",
-			});
-		}
-	}, [isFilterVisible]);
-
-	const handleFilterToggle = () => {
-		if (!isFilterOpen) {
-			setIsFilterVisible(true);
-			setIsFilterOpen(true);
-			setTimeout(() => {
-				if (filterTl.current) filterTl.current.play();
-			}, 10);
-		} else {
-			handleFilterClose();
-		}
-	};
-
-	const handleFilterClose = () => {
-		if (filterTl.current) {
-			filterTl.current.reverse();
-			filterTl.current.eventCallback("onReverseComplete", () => {
-				setIsFilterOpen(false);
-				setIsFilterVisible(false);
-			});
-		}
-	};
-
 	const handleSortChange = (newSortBy) => {
 		setSortBy(newSortBy);
 		setVisibleCount(INITIAL_COUNT); // Reset pagination
-		handleFilterClose();
 	};
 
 	const discoveredSpotsDetails = () => {
@@ -108,7 +59,6 @@ const DiscoveredSpot = () => {
 			})
 			.filter(Boolean);
 
-		// Apply sorting
 		return sortSpots(spots);
 	};
 
@@ -120,32 +70,32 @@ const DiscoveredSpot = () => {
 				return sortedSpots.sort((a, b) => {
 					const posA = a.clubRanking?.position || 999;
 					const posB = b.clubRanking?.position || 999;
-					return posA - posB; // Best position first (1, 2, 3...)
+					return posA - posB;
 				});
 
 			case "position-desc":
 				return sortedSpots.sort((a, b) => {
 					const posA = a.clubRanking?.position || 0;
 					const posB = b.clubRanking?.position || 0;
-					return posB - posA; // Worst position first
+					return posB - posA;
 				});
 
 			case "score-asc":
 				return sortedSpots.sort((a, b) => {
 					const scoreA = a.clubRanking?.points || 0;
 					const scoreB = b.clubRanking?.points || 0;
-					return scoreA - scoreB; // Lowest score first
+					return scoreA - scoreB;
 				});
 
 			case "score-desc":
 				return sortedSpots.sort((a, b) => {
 					const scoreA = a.clubRanking?.points || 0;
 					const scoreB = b.clubRanking?.points || 0;
-					return scoreB - scoreA; // Highest score first
+					return scoreB - scoreA;
 				});
 
 			default:
-				return sortedSpots; // Original order
+				return sortedSpots;
 		}
 	};
 
@@ -162,15 +112,6 @@ const DiscoveredSpot = () => {
 	const handleShowLess = () => {
 		setVisibleCount(INITIAL_COUNT);
 	};
-
-	// Filter options
-	const filterOptions = [
-		{ value: "default", label: "Default Order" },
-		{ value: "position-asc", label: "Best Position First" },
-		{ value: "position-desc", label: "Worst Position First" },
-		{ value: "score-desc", label: "Highest Score First" },
-		{ value: "score-asc", label: "Lowest Score First" },
-	];
 
 	// Loading state
 	if (!allSpots.length) {
@@ -201,68 +142,19 @@ const DiscoveredSpot = () => {
 					</p>
 				</div>
 
-				{/* Filter Button with Dropdown */}
-				<div className="relative">
-					<Button
-						label="Filters"
-						icon={
-							<ListFilter
-								size={12}
-								className={`transition-transform duration-200 ${
-									isFilterOpen ? "rotate-180" : "rotate-0"
-								}`}
-							/>
-						}
-						onClick={handleFilterToggle}
-						className={`${
-							isFilterOpen ? "border-primary/70 bg-primary/5" : ""
-						}`}
-					/>
-
-					{/* Filter Dropdown */}
-					{isFilterVisible && (
-						<div
-							ref={filterDropdownRef}
-							className="glassmorphism rounded-2xl absolute top-full right-0 mt-4 backdrop-blur-sm shadow-xl z-50 min-w-[240px]"
-						>
-							<div className="p-2">
-								<div className="text-xs font-fciconicBW text-gray-500 px-3 py-2 uppercase tracking-wide">
-									Sort By
-								</div>
-								<div className="space-y-1">
-									{filterOptions.map((option) => (
-										<button
-											key={option.value}
-											onClick={() => handleSortChange(option.value)}
-											className={`w-full font-fciconicBW  text-dark text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-												sortBy === option.value
-													? "bg-gradient-to-r from-secondery/10 to-primary/10 text-primary font-medium"
-													: "text-textGray hover:bg-white/50"
-											}`}
-										>
-											<span className="text-sm">{option.label}</span>
-											{sortBy === option.value && (
-												<Check size={16} className="text-primary" />
-											)}
-										</button>
-									))}
-								</div>
-
-								{/* Active Filter Info */}
-								{sortBy !== "default" && (
-									<div className="mt-3 pt-3 border-t border-gray-200">
-										<button
-											onClick={() => handleSortChange("default")}
-											className="w-full text-xs text-center text-gray-500 hover:text-primary transition-colors py-2"
-										>
-											Reset to Default
-										</button>
-									</div>
-								)}
-							</div>
-						</div>
-					)}
-				</div>
+				{/* Reusable Dropdown Button */}
+				<DropdownButton
+					label="Filters"
+					icon={<ListFilter size={12} />}
+					options={filterOptions}
+					value={sortBy}
+					onChange={handleSortChange}
+					dropdownTitle="Sort By"
+					showReset={true}
+					resetLabel="Reset to Default"
+					defaultValue="default"
+					minWidth="240px"
+				/>
 			</div>
 
 			{/* Active Filter Badge */}
@@ -279,40 +171,23 @@ const DiscoveredSpot = () => {
 
 			<div>
 				<div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
-					{visibleSpots.map((spot, index) => (
+					{visibleSpots.map((spot) => (
 						<div key={spot.id}>
 							<SpotCard spot={spot} />
 						</div>
 					))}
 				</div>
 
-				{hasMoreSpots && (
-					<div className="text-center pt-8 self-center">
-						<Button
-							className="mx-auto"
-							label="Show More"
-							onClick={handleShowMore}
-						/>
-						<div className="mt-3 text-sm text-gray-500">
-							Showing {visibleCount} of {allSpots.length} spots
-						</div>
-					</div>
-				)}
-
-				{!hasMoreSpots && allSpots.length > INITIAL_COUNT && (
-					<div className="text-center pt-8 self-center">
-						{visibleCount > INITIAL_COUNT && (
-							<Button
-								className="mx-auto"
-								label="Show Less"
-								onClick={handleShowLess}
-							/>
-						)}
-						<div className="mt-2 text-sm text-gray-500">
-							You&apos;ve seen all {allSpots.length} discovered spots
-						</div>
-					</div>
-				)}
+				{/* Pagination Controls */}
+				<PaginationControls
+					visibleCount={visibleCount}
+					totalCount={allSpots.length}
+					initialCount={INITIAL_COUNT}
+					hasMore={hasMoreSpots}
+					onShowMore={handleShowMore}
+					onShowLess={handleShowLess}
+					itemLabel="spots"
+				/>
 			</div>
 		</div>
 	);

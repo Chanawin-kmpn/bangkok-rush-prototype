@@ -63,13 +63,13 @@ const TopThreeRankBanner = ({ rank }) => {
 					{points}
 				</span>
 				<div className="mt-1 lg:mt-4">
-					<div className="flex gap-4 items-center mt-0.5 justify-between px-1">
-						<div className="flex gap-1 items-center text-[8px] lg:text-xs font-fciconicBW text-dark/50">
-							<Users className="text-primary size-3 lg:size-4" />
+					<div className="flex gap-4 items-center mt-0.5 justify-between px-4">
+						<div className="flex gap-1 items-center text-[8px] lg:text-lg font-fciconicBW text-dark/50">
+							<Users className="text-primary size-3 lg:size-8" />
 							{members}
 						</div>
-						<div className="flex gap-1 items-center text-[8px] lg:text-xs font-fciconicBW text-dark/50">
-							<Crown className="text-yellow size-3 lg:size-4" />
+						<div className="flex gap-1 items-center text-[8px] lg:text-lg font-fciconicBW text-dark/50">
+							<Crown className="text-yellow size-3 lg:size-8" />
 							{leader}
 						</div>
 					</div>

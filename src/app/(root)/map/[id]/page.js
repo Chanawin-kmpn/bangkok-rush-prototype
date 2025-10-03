@@ -3,13 +3,14 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { allSpotsDetailComplete } from "../../../../../data/spotDetails";
 import dynamic from "next/dynamic";
-import TopRank from "@/components/TopRank";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { MapPin } from "lucide-react";
+import { MapPin, Calendar } from "lucide-react";
 import SpotOverview from "@/components/SpotOverview";
 import { useQuarters } from "../../../../../context/QuartersContext";
 import RankingLeaderboard from "@/components/RankingLeaderboard";
+import DropdownButton from "@/components/DropdownButton";
+import { quarterOptions } from "../../../../../constants";
 
 const Minimap = dynamic(() => import("@/components/Minimap"), {
 	ssr: false,
@@ -36,6 +37,10 @@ const Page = () => {
 		return spot.quarterlyRankings[selectedQuarter] || [];
 	};
 
+	const handleQuarterChange = (newQuarter) => {
+		setInitialQuarter(newQuarter);
+	};
+
 	useEffect(() => {
 		getSpotDetailFromId(id);
 	}, [id]);
@@ -56,10 +61,10 @@ const Page = () => {
 	}
 
 	return (
-		<div className="space-y-8 lg:space-y-16 ">
+		<div className="space-y-8 lg:space-y-16">
 			{/* Detail Section */}
-			<div className=" w-full flex flex-col lg:flex-row glassmorphism rounded-[40px]  overflow-hidden">
-				<div className="max-lg:min-h-[400px] lg:h-[960px] w-full lg:w-1/2 relative ">
+			<div className="w-full flex flex-col lg:flex-row glassmorphism rounded-[40px] overflow-hidden">
+				<div className="max-lg:min-h-[400px] lg:h-[960px] w-full lg:w-1/2 relative">
 					<Image
 						src={spot.img}
 						fill
@@ -67,7 +72,7 @@ const Page = () => {
 						alt="Spot Image"
 					/>
 				</div>
-				<div className="px-4 py-8 lg:px-16 lg:py-20 space-y-4 lg:w-1/2 ">
+				<div className="px-4 py-8 lg:px-16 lg:py-20 space-y-4 lg:w-1/2">
 					{/* Detail Header */}
 					<div>
 						<h1 className="text-[2rem] lg:text-[2.5rem]">{spot.name}</h1>
@@ -77,7 +82,7 @@ const Page = () => {
 								<span>{spot.district}</span>
 							</div>
 							<span
-								className={cn("font-fciconicBW ", {
+								className={cn("font-fciconicBW", {
 									"text-success": spot.overviews.status === "Available",
 									"text-error": spot.overviews.status === "Closed",
 								})}
@@ -108,6 +113,7 @@ const Page = () => {
 					</div>
 				</div>
 			</div>
+
 			{/* Rank Section */}
 			<div className="space-y-8 lg:space-y-16">
 				{/* Quarter Selector */}
@@ -118,7 +124,7 @@ const Page = () => {
 							<button
 								key={index}
 								className={cn(
-									"font-fciconicBW text-textGray text-[32px] cursor-pointer",
+									"font-fciconicBW text-textGray text-[32px] cursor-pointer transition-colors duration-200 hover:text-secondery",
 									{
 										"text-secondery": initialQuarter === quarter,
 									}
@@ -129,9 +135,23 @@ const Page = () => {
 							</button>
 						))}
 					</div>
+
 					{/* Mobile Selector */}
-					<div></div>
+					<div className="lg:hidden flex justify-start">
+						<DropdownButton
+							label={`Quarter: ${initialQuarter}`}
+							icon={<Calendar size={14} />}
+							options={quarterOptions}
+							value={initialQuarter}
+							onChange={handleQuarterChange}
+							dropdownTitle="Select Quarter"
+							showReset={false}
+							minWidth="220px"
+							className="w-full max-w-xs"
+						/>
+					</div>
 				</div>
+
 				{/* Ranking leaderboard */}
 				<div className="lg:mt-[400px] mt-32">
 					<RankingLeaderboard rankings={rankings} />
