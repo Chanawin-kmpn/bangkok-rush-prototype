@@ -110,8 +110,6 @@ const Map = () => {
 
 	const spotsData = processSpotData();
 
-	console.log(spotsData[0].sunriseRank);
-
 	return (
 		<div className="w-full h-dvh relative rounded-[40px] overflow-hidden z-40">
 			<MapContainer
